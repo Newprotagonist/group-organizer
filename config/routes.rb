@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :groups, only: %i[create show destroy] do
     resources :group_members, only: %i[create]
   end
+  resources :group_members, only: %i[destroy]
 end

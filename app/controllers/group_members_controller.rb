@@ -6,6 +6,13 @@ class GroupMembersController < ApplicationController
     redirect_to group_path(@group) if @group_member.save
   end
 
+  def destroy
+    @group_member = GroupMember.find(params[:id])
+    @group = @group_member.group
+    @group_member.destroy
+    redirect_to groups_path(@group), status: :see_other
+  end
+
   private
 
   def group_member_params
