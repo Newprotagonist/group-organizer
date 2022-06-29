@@ -13,3 +13,22 @@
     <li><%= group_member.user.email %> <%= link_to "Delete", group_member_path, data:{turbo_method: :delete, turbo_confirm: "Are you sure ?"} %></li>
   <% end %>
 </ul>
+
+<div data-controller="flatpickr">
+  <%= simple_form_for [@group, @event] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :start_time, as: :string, required: false, input_html: {id: "range_start"} %>
+        <%= f.input :end_time, as: :string, required: false, input_html: {id: "range_end"} %>
+        <%= f.button :submit, "Go", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<%= month_calendar(events: @events) do |date, events| %>
+  <%= date.day %>
+
+<% events.each do |event| %>
+    <div>
+      <%= event.name %>
+    </div>
+  <% end %>
+<% end %>

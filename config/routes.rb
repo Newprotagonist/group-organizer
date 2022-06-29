@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :groups, only: %i[create show destroy] do
     resources :group_members, only: %i[create]
+    resources :events, only: %i[create edit destroy]
   end
   resources :group_members, only: %i[destroy]
 end
