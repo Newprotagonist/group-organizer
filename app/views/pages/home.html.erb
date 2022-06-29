@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if current_user %>
+  <h1>Welcome <%= current_user.email %></h1>
+  <h2>Your groups created</h2>
+  <ul>
+    <% current_user.groups.each do |group| %>
+      <%= link_to group_path(group) do%>
+        <li><%= group.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <%= simple_form_for(@group) do |g| %>
+  <%= g.input :name  %>
+  <%= g.submit %>
+  <% end %>
+<% else %>
+<%= link_to "Sign In", new_user_session_path %>
+<%= link_to "Sign Up", new_user_registration_path %>
+<% end %>

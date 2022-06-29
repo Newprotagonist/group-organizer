@@ -1,0 +1,6 @@
+<h1><%= @group.name %></h1>
+  <%= simple_form_for [@group, @group_member] do |g| %>
+  <%= g.input :user_id, collection: User.all, label_method: :email %>
+  <%= g.submit %>
+  <% end %>
+  <% console %>
