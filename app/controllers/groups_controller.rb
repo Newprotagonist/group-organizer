@@ -8,6 +8,8 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_member = GroupMember.new
+    @event = Event.new
+    @events = @group.events
   end
 
   def destroy
